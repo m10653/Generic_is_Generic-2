@@ -33,15 +33,15 @@ public class Webserver{
 		Server server = new Server(port);
 		
 		ResourceHandler resourceHandler = new ResourceHandler();
-		resourceHandler.setDirectoriesListed(true);
-		resourceHandler.setWelcomeFiles(new String[] {"tacker.html"});
-		resourceHandler.setResourceBase(".");
+		resourceHandler.setDirectoriesListed(false);
+		resourceHandler.setWelcomeFiles(new String[] {"Tracker.html"});
+		resourceHandler.setResourceBase("./WebContent");
 		
 		
 		GzipHandler gzip = new GzipHandler();
 		server.setHandler(gzip);
 		HandlerList handlelist = new HandlerList();
-		handlelist.setHandlers(new Handler[] {new WebHandler(), resourceHandler, new DefaultHandler()}); // TODO:remove 404 and rederect to root
+		handlelist.setHandlers(new Handler[] {new WebHandler(), resourceHandler,new RedirectHandler()});
 		gzip.setHandler(handlelist);
 		
 		try {

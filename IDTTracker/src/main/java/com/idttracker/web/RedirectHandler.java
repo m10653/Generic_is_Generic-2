@@ -15,7 +15,7 @@ public class RedirectHandler extends AbstractHandler {
 			throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		response.setContentLength(0);
-		response.sendRedirect("/Tracker.html");
+		response.sendRedirect("/");
 		baseRequest.setHandled(true);
 		
 	}

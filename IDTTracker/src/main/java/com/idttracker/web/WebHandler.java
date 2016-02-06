@@ -12,8 +12,18 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 public class WebHandler extends AbstractHandler{
 
 	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		System.out.println("Handle");
-		baseRequest.setHandled(false);
+		//System.out.println(target);
+		
+		if(target.startsWith("/tracknewpackage")){
+			
+			baseRequest.setHandled(true);
+		}else if(target.startsWith("/packagetrackupdate/")){
+			String uuid = target.substring(20);
+			
+			baseRequest.setHandled(true);
+		}else{
+			baseRequest.setHandled(false);
+		}
 		
 	}
 	
