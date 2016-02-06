@@ -13,7 +13,7 @@ import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlets.gzip.GzipHandler;
-import org.eclipse.jetty.server.handler.;
+
 
 public class Webserver{
 	private final int port;
