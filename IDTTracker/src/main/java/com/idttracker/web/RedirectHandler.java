@@ -14,7 +14,9 @@ public class RedirectHandler extends AbstractHandler {
 	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		System.out.println("apple");
+		response.setContentLength(0);
+		response.sendRedirect("/Tracker.html");
+		baseRequest.setHandled(true);
 		
 	}
 
