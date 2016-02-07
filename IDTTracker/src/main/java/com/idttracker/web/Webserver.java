@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlets.gzip.GzipHandler;
@@ -51,10 +50,6 @@ public class Webserver{
 			e.printStackTrace();
 		}
 		
-	}
-	public static void main(String[] args){
-		Webserver server = new Webserver(8080);
-		server.start();
 	}
 
 }

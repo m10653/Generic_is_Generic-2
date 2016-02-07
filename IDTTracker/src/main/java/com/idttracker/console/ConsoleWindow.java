@@ -3,10 +3,17 @@ package com.idttracker.console;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
@@ -40,7 +47,9 @@ public class ConsoleWindow{
 	private int maxLines = Integer.parseInt(Config.read("MaxLineBuffer"));
 	public ConsoleWindow() {
 		if(gui){
+			
 			window = new JFrame("Package Tracking Console");
+			window .setIconImage(new ImageIcon("Icon.png").getImage());
 			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 			window.setSize((int)(screenSize.getWidth()/4),(int) (screenSize.getHeight() /1.5));
@@ -173,8 +182,8 @@ public class ConsoleWindow{
 
 		public void actionPerformed(ActionEvent e) {
 			if(!e.getActionCommand().equals("")){
-//				Console.sendInput(e.getActionCommand());
-//				ComandHandler.ProcessComand(e.getActionCommand());
+				Console.sendInput(e.getActionCommand());
+				ComandHandler.processComand(e.getActionCommand());
 				input.setText("");
 			}
 		}

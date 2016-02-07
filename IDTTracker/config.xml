@@ -2,6 +2,7 @@
 <list>
 <port>8080</port>
 <address>192.168.1.169</address>
+<bindip>true</bindip>
 <encoding>ISO-8859-1</encoding>
 <openWebUIOnStartup>false</openWebUIOnStartup>
 <ConsoleGUI>true</ConsoleGUI>
