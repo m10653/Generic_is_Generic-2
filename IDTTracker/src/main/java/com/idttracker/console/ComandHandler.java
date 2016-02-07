@@ -2,7 +2,6 @@ package com.idttracker.console;
 
 import java.awt.Color;
 
-import com.idttracker.web.WebHandler;
 
 public class ComandHandler {
 	private static ConsoleWindow window;
