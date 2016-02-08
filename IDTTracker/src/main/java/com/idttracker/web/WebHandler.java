@@ -46,6 +46,10 @@ public class WebHandler extends AbstractHandler{
 		}else if(target.startsWith("/packagetrackupdate/")){
 			String uuid = target.substring(20);
 			String body =request.getReader().readLine();
+			Map<String, String> values = Parser.parseBody(body);
+			if(values.get("uuid")!= null && values.get("lat") != null && values.get("lon") != null && values.get("ele") != null && values.get("time") != null){
+				PackageHandler.updatePackage(values.get("uuid"), Double.parseDouble(values.get("lat")),  Double.parseDouble(values.get("lat")), 0, ""); //FIXME
+			}
 			response.setContentLength(0);
 			System.out.println(uuid);
 			Console.sendInfo(body);

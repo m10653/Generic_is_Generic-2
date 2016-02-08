@@ -12,6 +12,10 @@ public class PackageHandler {
 		packages.put(UUID, p);
 		
 	}
+	public static void updatePackage(String uuid, double lat, double lon, double ele, String Time) {
+		packages.get(uuid).update(lat, lon);
+		
+	}
 	public static Package getPackage(String uuid){
 		return packages.get(uuid);
 	}

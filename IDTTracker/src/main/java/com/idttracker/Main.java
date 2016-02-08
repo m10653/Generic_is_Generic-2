@@ -11,11 +11,11 @@ import com.idttracker.web.Webserver;
 
 public class Main {
 	public static void main(String[] args) {
-		Webserver server = new Webserver(Integer.parseInt(Config.read("port")));
+		Webserver wserver = new Webserver(Integer.parseInt(Config.read("port")));
 		ConsoleWindow window = new ConsoleWindow();
 		Console.addConsoleWindow(window);
 		ComandHandler.addConsoleWindow(window);
-		server.start();
+		wserver.start();
 		Console.sendInfo("Server Started");
 		if (Desktop.isDesktopSupported() && Boolean.parseBoolean(Config.read("openWebUIOnStartup"))) { 
 			try {
