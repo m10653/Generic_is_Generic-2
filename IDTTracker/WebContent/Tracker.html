@@ -16,14 +16,13 @@
   	<div class = "sidebar">
   		<h3>Package Tracker</h3>
   		<p>Track your packages by entering your package UUID(s)</p>
-  		<input type ="text" id="uuidbutton" placeholder ="Enter UUID">
-		<button onclick="uuid()">Go</button>
+  		<input type ="text" id="uuidbutton" placeholder ="Enter UUID"  class = "uuid" >
   		<output type ="text" id="output" placeholder="lat:">
+		
   		<div class = "login">
   			<div class = "inputboxes" id= "boxes">
-  			<input type= "text" id="name" placeholder = "UserName" ><br>
-  			<input type = "password" id= "test" placeholder = "Password"><br>
-  			<button onclick="password()">Go</button>
+  			<input type= "text" id="user" placeholder = "UserName" class = "login1" ><br>
+  			<input type = "password" id= "pass" placeholder = "Password" class = "login1"><br>
 			</div>
   			
   			<button id= "loginbutton" type = "button" onclick="display()">Login</button>

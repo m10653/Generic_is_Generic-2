@@ -9,7 +9,32 @@ $(window).load(function() {
 
   	    $("#boxes").toggle(1000);
   	});
-  	   
+	$(document).ready(function() { // Get UUID from text box
+    $('.uuid').keydown(function(event) {
+        if (event.keyCode == 13) {
+            enterid(document.getElementById("uuidbutton").value);
+            return false;
+         }
+    });
+});
+$(document).ready(function() { // Get UUID from text box
+    $('.login').keydown(function(event) {
+        if (event.keyCode == 13) {
+            login();
+            return false;
+         }
+    });
+});
+	
+	
+	function enterid(uuid){
+		console.log(uuid);
+	}
+	function login(){
+		var user = document.getElementById("user").value;
+		var pass = document.getElementById("pass").value;
+		
+	}
 	function password()
 	{
 		var pswrd = document.getElementById("test").value = "\u5929\u5730\u7384\u9ec3";
