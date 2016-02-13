@@ -2,6 +2,10 @@ package com.idttracker.util;
 
 import java.lang.reflect.Type;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 //import org.json.JSONObject;
@@ -99,9 +103,19 @@ public class Parser {
 		return parsed;
 	}
 
-	public static Timestamp parseTimeStamp(String timeStamp) { // TODO add TimeStamp
-															// Parser
-		return null;
+	public static Timestamp parseTimeStamp(String timeStamp) { 
+		try {
+		      DateFormat formatter;
+		      formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"); //TODO java.util.TimeZone.getDefault() get system timezone and display
+		      Date date = formatter.parse(timeStamp);
+		      java.sql.Timestamp timeStampDate = new Timestamp(date.getTime());
+
+		      return timeStampDate;
+		    } catch (ParseException e) {
+		      System.out.println("Exception :" + e);
+		      return null;
+		}
+															
 	}
 
 }
