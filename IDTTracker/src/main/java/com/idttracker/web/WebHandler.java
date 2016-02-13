@@ -50,7 +50,7 @@ public class WebHandler extends AbstractHandler{
 			System.out.println(body);
 			Map<String, String> values = Parser.parseBody(body);
 			if(values.get("uuid")!= null && values.get("lat") != null && values.get("lon") != null && values.get("ele") != null && values.get("time") != null){
-				PackageHandler.updatePackage(values.get("uuid"), Double.parseDouble(values.get("lat")),  Double.parseDouble(values.get("lat")), 0, ""); //FIXME
+				PackageHandler.updatePackage(values.get("uuid"), Double.parseDouble(values.get("lat")),  Double.parseDouble(values.get("lat")),0, values.get("time")); // TODO add elevation
 			}
 			response.setContentLength(0);
 			System.out.println(uuid);

@@ -1,6 +1,8 @@
 package com.idttracker.packages;
 
 
+import java.sql.Timestamp;
+
 //2015-12-08T08:42:33.188-05:00
 /**
 * 
@@ -17,7 +19,8 @@ public class Package {
 		desLon = destinationLon;
 
 	}
-	public void update(double lat, double lon){
+	public void update(double lat, double lon,Timestamp time){
+		
 		curLat = lat;
 		curLon = lon;
 		double theta = curLon - desLon;
