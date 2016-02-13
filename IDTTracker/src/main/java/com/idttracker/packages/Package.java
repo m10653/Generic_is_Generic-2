@@ -43,6 +43,12 @@ public class Package {
 	public double getDis(){
 		return dist;
 	}
+	public Timestamp getETA(){
+		return null;
+	}
+	public String toString(){
+		return null;
+	}
 	
 
 }
