@@ -46,96 +46,17 @@ $(document).ready(function() { // Get UUID from text box
 	
 	
 		var uuid = document.getElementById("uuidbutton").value;
-		var dgt1 = "";
-		var temp, temp2;
 		var newlat;
 		var newlong;
-		for(var i = 0; i < uuid.length; i ++)
-		{
-			if(uuid.charAt(i) === '-')
-				{
-					dgt1 = uuid.substring(0, i);
-					temp = i + 1;
-				break;
-				}
-		}
 		
-		var dgt2 = "";
-		for(var i = temp; i < uuid.length; i ++)
-		{
-			if(uuid.charAt(i) === '-')
-				{
-					dgt2 = uuid.substring(temp, i);
-					temp = i + 1;
-				break;
-				}
-		}
-		var dgt3 = "";
-		for(var i = temp; i < uuid.length; i ++)
-		{
-			if(uuid.charAt(i) === '-')
-				{
-					dgt3 = uuid.substring(temp, i);
-					temp = i + 1;
-				break;
-				}
-		}
-		var dgt4 = "";
-		for(var i = temp; i < uuid.length; i ++)
-		{
-			if(uuid.charAt(i) === '-')
-				{
-					dgt4 = uuid.substring(temp, i);
-					temp = i + 1;
-				break;
-				}
-		}
-		var dgt5 = "";
-		for(var i = temp; i < uuid.length; i ++)
-		{
-			if(uuid.charAt(i) === '-')
-				{
-					dgt5 = uuid.substring(temp, i);
-					temp = i + 1;
-				break;
-				}
-		}
-		
-		
-				
-				
-		for (var i = 0; i < uuid.length; i++)
-		{
-			if(uuid.charAt(i) === '&')
-			{
-				for(var j = i + 1; j < uuid.length; j++)
-				{
-					if(uuid.charAt(j) === '&')
-					{
-						newlat = uuid.substring(i + 16, j);
-						temp2 = j;
-						break;
-					}
-				}
-				break;
-			}
-		}
-		
-		for(var j = temp2 + 1; j < uuid.length; j++)
-				{
-					if(uuid.charAt(j) === '&')
-					{
-						newlong = uuid.substring(temp2 + 16, j);
-						break;
-					}
-				}
 		
 		
 		document.getElementById("uuidbutton").value = dgt2;
 		//document.write(newlat);
 		document.getElementById("output").value = "	" + "Lat: " + newlat;
 		var dgtx = dgt1 + dgt2 + dgt3 + dgt4 + dgt5;
-		init(uuid);
+		
+		doSend(uuid);
 		
 		
 		//{lat: 25.363, lng: 131.044};
@@ -163,13 +84,13 @@ $(document).ready(function() { // Get UUID from text box
    var wsUri = "ws://mc.m1gaming.net:8080/ws/";
   var output;
 
-  function init(evt)
+  function init()
   {
     output = document.getElementById("output");
-    testWebSocket(evt);
+    testWebSocket();
   }
 
-  function testWebSocket(evt)
+  function testWebSocket()
   {
     websocket = new WebSocket(wsUri);
     websocket.onopen = function(evt) { onOpen(evt) };
@@ -181,7 +102,7 @@ $(document).ready(function() { // Get UUID from text box
   function onOpen(evt)
   {
     writeToScreen("CONNECTED");
-    doSend("test");
+    doSend(evt);
   }
 
   function onClose(evt)
