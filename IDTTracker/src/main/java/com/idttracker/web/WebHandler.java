@@ -20,6 +20,7 @@ public class WebHandler extends AbstractHandler{
 
 	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		System.out.println("handle");
+		System.out.println(target);
 		if(target.startsWith("/tracknewpackage")){
 			
 			

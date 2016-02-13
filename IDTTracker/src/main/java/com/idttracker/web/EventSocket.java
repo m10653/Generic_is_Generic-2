@@ -10,12 +10,11 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 @ClientEndpoint
-@ServerEndpoint(value="/ws/")
+@ServerEndpoint(value="/")
 public class EventSocket
 {
     @OnOpen
-    public void onWebSocketConnect(Session sess)
-    {
+    public void onWebSocketConnect(Session sess){
         System.out.println("Socket Connected: " + sess);
     }
     

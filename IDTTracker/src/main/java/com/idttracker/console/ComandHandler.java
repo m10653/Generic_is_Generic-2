@@ -2,6 +2,8 @@ package com.idttracker.console;
 
 import java.awt.Color;
 
+import com.idttracker.web.EventClient;
+
 
 public class ComandHandler {
 	private static ConsoleWindow window;
@@ -19,6 +21,8 @@ public class ComandHandler {
 			color(words);
 		}else if(cmd.equalsIgnoreCase("Exit")){
 			exit();
+		}else{
+			new EventClient();
 		}
 	}
 	private static void color(String[] args){
