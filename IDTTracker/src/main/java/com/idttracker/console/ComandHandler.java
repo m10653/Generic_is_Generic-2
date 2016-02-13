@@ -2,6 +2,7 @@ package com.idttracker.console;
 
 import java.awt.Color;
 
+import com.idttracker.packages.PackageHandler;
 import com.idttracker.web.EventClient;
 
 
@@ -21,8 +22,8 @@ public class ComandHandler {
 			color(words);
 		}else if(cmd.equalsIgnoreCase("Exit")){
 			exit();
-		}else{
-			new EventClient();
+		}else if(cmd.equalsIgnoreCase("get")){
+			get(words);
 		}
 	}
 	private static void color(String[] args){
@@ -46,8 +47,11 @@ public class ComandHandler {
 			Console.sendError("Syntax Error");
 		}
 	}
-	public static void help(){
+	private static void help(){
 		
+	}
+	private static void get(String[] args){
+		Console.sendInfo(PackageHandler.getPackage(args[1]).toString());
 	}
 	private static void exit(){
 		System.exit(0);
