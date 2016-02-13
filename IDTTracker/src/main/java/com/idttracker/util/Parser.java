@@ -1,6 +1,7 @@
 package com.idttracker.util;
 
 import java.lang.reflect.Type;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 //import org.json.JSONObject;
@@ -98,7 +99,7 @@ public class Parser {
 		return parsed;
 	}
 
-	public static Long parseTimeStamp(String timeStamp) { // TODO add TimeStamp
+	public static Timestamp parseTimeStamp(String timeStamp) { // TODO add TimeStamp
 															// Parser
 		return null;
 	}
