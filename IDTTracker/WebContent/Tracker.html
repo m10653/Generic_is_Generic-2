@@ -35,13 +35,15 @@
   	<div class = "sidebar">
   		<h3>Package Tracker</h3>
   		<p>Track your packages by entering your package UUID(s)</p>
-  		<input type = "text" id= "uuidbutton" placeholder ="Enter UUID">
-  		<br><a href = "/exit">Exit Program</a>
+  		<input type ="text" id="uuidbutton" placeholder ="Enter UUID">
+		<button onclick="uuid()">Go</button>
+  		<output type ="text" id="output" placeholder="lat:">
   		<div class = "login">
   			<div class = "inputboxes" id= "boxes">
   			<input type= "text" id="name" placeholder = "UserName" ><br>
   			<input type = "password" id= "test" placeholder = "Password"><br>
-  			</div>
+  			<button onclick="password()">Go</button>
+			</div>
   			
   			<button id= "loginbutton" type = "button" onclick="display()">Login</button>
 			
@@ -69,15 +71,127 @@
   	    $("#boxes").toggle(1000);
   	});
   	   
-  
-				
-            
-                
-	
-
+	function password()
+	{
+		var pswrd = document.getElementById("test").value = "\u5929\u5730\u7384\u9ec3";
+	}
+	   
+  function uuid()
+  {
+		var uuid = document.getElementById("uuidbutton").value;
+		var dgt1 = "";
+		var temp, temp2;
+		var newlat;
+		var newlong;
+		for(var i = 0; i < uuid.length; i ++)
+		{
+			if(uuid.charAt(i) === '-')
+				{
+					dgt1 = uuid.substring(0, i);
+					temp = i + 1;
+				break;
+				}
+		}
 		
-		var p1 = new google.maps.LatLng(45.463688, 9.18814);
-		var p2 = new google.maps.LatLng(46.0438317, 9.75936230000002);
+		var dgt2 = "";
+		for(var i = temp; i < uuid.length; i ++)
+		{
+			if(uuid.charAt(i) === '-')
+				{
+					dgt2 = uuid.substring(temp, i);
+					temp = i + 1;
+				break;
+				}
+		}
+		var dgt3 = "";
+		for(var i = temp; i < uuid.length; i ++)
+		{
+			if(uuid.charAt(i) === '-')
+				{
+					dgt3 = uuid.substring(temp, i);
+					temp = i + 1;
+				break;
+				}
+		}
+		var dgt4 = "";
+		for(var i = temp; i < uuid.length; i ++)
+		{
+			if(uuid.charAt(i) === '-')
+				{
+					dgt4 = uuid.substring(temp, i);
+					temp = i + 1;
+				break;
+				}
+		}
+		var dgt5 = "";
+		for(var i = temp; i < uuid.length; i ++)
+		{
+			if(uuid.charAt(i) === '-')
+				{
+					dgt5 = uuid.substring(temp, i);
+					temp = i + 1;
+				break;
+				}
+		}
+		
+		
+				
+				
+		for (var i = 0; i < uuid.length; i++)
+		{
+			if(uuid.charAt(i) === '&')
+			{
+				for(var j = i + 1; j < uuid.length; j++)
+				{
+					if(uuid.charAt(j) === '&')
+					{
+						newlat = uuid.substring(i + 16, j);
+						temp2 = j;
+						break;
+					}
+				}
+				break;
+			}
+		}
+		
+		for(var j = temp2 + 1; j < uuid.length; j++)
+				{
+					if(uuid.charAt(j) === '&')
+					{
+						newlong = uuid.substring(temp2 + 16, j);
+						break;
+					}
+				}
+		
+		
+		document.getElementById("uuidbutton").value = newlat + " " + newlong;
+		//document.write(newlat);
+		document.getElementById("output").value = "	" + "Lat: " + newlat;
+		//{lat: 25.363, lng: 131.044};
+		var myLatLng = {};
+		myLatLng = {lat: newlat, lng: newlong};
+		
+    	  // Create a map object and specify the DOM element for display.
+    	  var map = new google.maps.Map(document.getElementById('map'), {
+    	    center: myLatLng,
+    	    scrollwheel: true,
+    	    zoom: 4
+    	  });
+
+    	  // Create a marker and set its position.
+    	  var marker = new google.maps.Marker({
+    	    map: map,
+    	    position: myLatLng,
+    	    title: 'Hello World!'
+    	  });
+		
+  }
+				
+   function connection()
+{
+	var socket = new Websocket();
+	
+}   
 		
 		
 	</script>
