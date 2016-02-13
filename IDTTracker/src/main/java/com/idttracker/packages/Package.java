@@ -47,7 +47,7 @@ public class Package {
 		return null;
 	}
 	public String toString(){
-		return null;
+		return "Name: " + name + "ETA: " + null + " Distance: " + dist + "CurLat/lon:" + curLat+"/"+curLon + "DesLat/Lon: " + desLat+"/"+desLon;
 	}
 	
 
