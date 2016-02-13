@@ -61,7 +61,7 @@ public class Webserver{
 
 
         
-        
+        server.setHandler(contexts);
 		
 
 		try {
