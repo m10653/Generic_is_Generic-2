@@ -13,6 +13,7 @@ $(window).load(function() {
     $('.uuid').keydown(function(event) {
         if (event.keyCode == 13) {
             enterid(document.getElementById("uuidbutton").value);
+			document.getElementById("uuidbutton").value = "";
             return false;
          }
     });
@@ -26,21 +27,24 @@ $(document).ready(function() { // Get UUID from text box
     });
 });
  
- 
+
  function enterid(uuid){
   console.log(uuid);
-  doSend(uuid);
+   doSend("uuid " + uuid);
  }
  function login(){
   var user = document.getElementById("user").value;
   var pass = document.getElementById("pass").value;
-  
+  var passhash = CryptoJS.MD5(pass);
+	var send = "login " + user + " " + passhash;
+  doSend(send);
+  console.log(passhash);
  }
  function password()
  {
   var pswrd = document.getElementById("test").value = "\u5929\u5730\u7384\u9ec3";
  }
-    
+   // initMap(50, 30);
   function uuid()
   {
   
@@ -55,29 +59,13 @@ $(document).ready(function() { // Get UUID from text box
   document.getElementById("uuidbutton").value = dgt2;
   //document.write(newlat);
   document.getElementById("output").value = " " + "Lat: " + newlat;
-  var dgtx = dgt1 + dgt2 + dgt3 + dgt4 + dgt5;
+  //var dgtx = dgt1 + dgt2 + dgt3 + dgt4 + dgt5;
   
   doSend(uuid);
   
   
-  //{lat: 25.363, lng: 131.044};
-  var myLatLng = {};
-  myLatLng = {lat: newlat, lng: newlong};
   
-       // Create a map object and specify the DOM element for display.
-       var map = new google.maps.Map(document.getElementById('map'), {
-         center: myLatLng,
-         scrollwheel: true,
-         zoom: 4
-       });
-
-       // Create a marker and set its position.
-       var marker = new google.maps.Marker({
-         map: map,
-         position: myLatLng,
-         title: 'Hello World!'
-       });
-    
+ 
     
   
   }
@@ -114,6 +102,21 @@ $(document).ready(function() { // Get UUID from text box
   function onMessage(evt)
   {
     writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
+	
+	var objct = JSON.parse(evt.data);
+	writeToScreen(objct.name);
+	
+	console.log(objct);
+	console.log(objct.dist);
+	var dis = objct.dist;
+	
+	objct.curLoc;
+	var desLoc = objct.desLoc;
+	
+	console.log(objct.curLoc[0]);
+	console.log(desLoc);
+	initMap(dis, object);
+	
   //  websocket.close();
   }
 
