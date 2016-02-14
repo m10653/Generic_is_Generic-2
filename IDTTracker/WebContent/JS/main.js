@@ -29,6 +29,7 @@ $(document).ready(function() { // Get UUID from text box
  
  function enterid(uuid){
   console.log(uuid);
+  doSend(uuid);
  }
  function login(){
   var user = document.getElementById("user").value;
