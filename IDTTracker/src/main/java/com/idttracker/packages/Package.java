@@ -42,6 +42,7 @@ public class Package {
 			setDist = totalDist - dist;
 			long average = (long) (difference/setDist);
 			long distLeft = (long) (dist*average)+lastInMillis;
+			totalDist = dist;
 			ETA = new Timestamp(distLeft);
 		}
 	}
