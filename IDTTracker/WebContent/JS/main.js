@@ -1,3 +1,8 @@
+$(document).ready(function() {
+
+    initMap();
+});
+
 $(window).load(function() {
      $("body").removeClass("preload");
      $("#boxes").hide();
@@ -45,10 +50,12 @@ $(document).ready(function() { // Get UUID from text box
   var pswrd = document.getElementById("test").value = "\u5929\u5730\u7384\u9ec3";
  }
    // initMap(50, 30);
+  
+ 
   function uuid()
   {
   
- 
+	
  
   var uuid = document.getElementById("uuidbutton").value;
   var newlat;
@@ -115,7 +122,8 @@ $(document).ready(function() { // Get UUID from text box
 	
 	console.log(objct.curLoc[0]);
 	console.log(desLoc);
-	initMap(dis, object);
+	initMap(dis, objct);
+	
 	
   //  websocket.close();
   }
