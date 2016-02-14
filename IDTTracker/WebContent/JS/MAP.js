@@ -1,6 +1,6 @@
-function initMap() {
+function initMap(a, b) {
 	
-	var lat = 50;
+	var lat =30;
 	var lng = 50;
   var latlong = {lat: lat, lng: lng};
   var map = new google.maps.Map(document.getElementById('map'), {
