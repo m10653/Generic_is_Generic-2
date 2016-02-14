@@ -1,18 +1,26 @@
 function initMap() {
-    	  var myLatLng = {lat: -25.363, lng: 131.044};
+	
+	var lat = 50;
+	var lng = 50;
+  var latlong = {lat: lat, lng: lng};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: latlong
+  });
 
-    	  // Create a map object and specify the DOM element for display.
-    	  var map = new google.maps.Map(document.getElementById('map'), {
-    	    center: myLatLng,
-    	    scrollwheel: true,
-    	    zoom: 4
-    	  });
+  var contentString = "lat: " + lat + "long:" + lng;
 
-    	  // Create a marker and set its position.
-    	  var marker = new google.maps.Marker({
-    	    map: map,
-    	    position: myLatLng,
-    	    title: 'Hello World!'
-    	  });
-    	}
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
+  var marker = new google.maps.Marker({
+    position: latlong,
+    map: map,
+    title: 'click for status'
+  });
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
+}
     google.maps.event.addDomListener(window, 'load', initMap);
