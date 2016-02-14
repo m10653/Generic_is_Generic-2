@@ -43,7 +43,7 @@ $(document).ready(function() { // Get UUID from text box
 	
 	
 
-    	 initMap(60, 60);
+    	// initMap(60, 60);
 	   
   function uuid()
   {

@@ -1,4 +1,4 @@
-function initMap(a, b) {
+function initMap() {
 	
 	var lat = 50;
 	var lng = 50;
