@@ -1,15 +1,15 @@
 $(window).load(function() {
-  	  $("body").removeClass("preload");
-  	  $("#boxes").hide();
-  	  
-  	});
-  	
-  	
-  	$("#loginbutton").click(function(){
+     $("body").removeClass("preload");
+     $("#boxes").hide();
+     
+   });
+   
+   
+   $("#loginbutton").click(function(){
 
-  	    $("#boxes").toggle(1000);
-  	});
-	$(document).ready(function() { // Get UUID from text box
+       $("#boxes").toggle(1000);
+   });
+ $(document).ready(function() { // Get UUID from text box
     $('.uuid').keydown(function(event) {
         if (event.keyCode == 13) {
             enterid(document.getElementById("uuidbutton").value);
@@ -25,66 +25,60 @@ $(document).ready(function() { // Get UUID from text box
          }
     });
 });
-	
-	
-	function enterid(uuid){
-		console.log(uuid);
-	}
-	function login(){
-		var user = document.getElementById("user").value;
-		var pass = document.getElementById("pass").value;
-		
-	}
-	function password()
-	{
-		var pswrd = document.getElementById("test").value = "\u5929\u5730\u7384\u9ec3";
-	}
-
-	
-	
-
-    	// initMap(60, 60);
-
-	   
+ 
+ 
+ function enterid(uuid){
+  console.log(uuid);
+ }
+ function login(){
+  var user = document.getElementById("user").value;
+  var pass = document.getElementById("pass").value;
+  
+ }
+ function password()
+ {
+  var pswrd = document.getElementById("test").value = "\u5929\u5730\u7384\u9ec3";
+ }
+    
   function uuid()
   {
-		
-	
-	
-		var uuid = document.getElementById("uuidbutton").value;
-		var newlat;
-		var newlong;
-		
-		
-		
-		document.getElementById("uuidbutton").value = dgt2;
-		//document.write(newlat);
-		document.getElementById("output").value = "	" + "Lat: " + newlat;
-	//	var dgtx = dgt1 + dgt2 + dgt3 + dgt4 + dgt5;
-		
-		doSend(uuid);
-		
-		
-		//{lat: 25.363, lng: 131.044};
-		var myLatLng = {};
-		myLatLng = {lat: newlat, lng: newlong};
-		
-    	  // Create a map object and specify the DOM element for display.
-    	  var map = new google.maps.Map(document.getElementById('map'), {
-    	    center: myLatLng,
-    	    scrollwheel: true,
-    	    zoom: 4
-    	  });
+  
+ 
+ 
+  var uuid = document.getElementById("uuidbutton").value;
+  var newlat;
+  var newlong;
+  
+  
+  
+  document.getElementById("uuidbutton").value = dgt2;
+  //document.write(newlat);
+  document.getElementById("output").value = " " + "Lat: " + newlat;
+  var dgtx = dgt1 + dgt2 + dgt3 + dgt4 + dgt5;
+  
+  doSend(uuid);
+  
+  
+  //{lat: 25.363, lng: 131.044};
+  var myLatLng = {};
+  myLatLng = {lat: newlat, lng: newlong};
+  
+       // Create a map object and specify the DOM element for display.
+       var map = new google.maps.Map(document.getElementById('map'), {
+         center: myLatLng,
+         scrollwheel: true,
+         zoom: 4
+       });
 
-    	  // Create a marker and set its position.
-    	  var marker = new google.maps.Marker({
-    	    map: map,
-    	    position: myLatLng,
-    	    title: 'Hello World!'
-    	  });
-		  
-		  
-		
+       // Create a marker and set its position.
+       var marker = new google.maps.Marker({
+         map: map,
+         position: myLatLng,
+         title: 'Hello World!'
+       });
+    
+    
+  
   }
   
    var wsUri = "ws://mc.m1gaming.net:8080/ws/";
@@ -108,7 +102,7 @@ $(document).ready(function() { // Get UUID from text box
   function onOpen(evt)
   {
     writeToScreen("CONNECTED");
-    //doSend(evt);
+    doSend(evt);
   }
 
   function onClose(evt)
@@ -119,7 +113,7 @@ $(document).ready(function() { // Get UUID from text box
   function onMessage(evt)
   {
     writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
-    //websocket.close();
+    websocket.close();
   }
 
   function onError(evt)
@@ -143,5 +137,3 @@ $(document).ready(function() { // Get UUID from text box
   }
 
   window.addEventListener("load", init, false);
-  
-  
