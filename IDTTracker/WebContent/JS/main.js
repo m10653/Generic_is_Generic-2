@@ -36,7 +36,7 @@ $(document).ready(function() { // Get UUID from text box
   var user = document.getElementById("user").value;
   var pass = document.getElementById("pass").value;
   var passhash = CryptoJS.MD5(pass);
-	var send = "login " + user + " " + passhash;
+  var send = "login " + user + " " + passhash;
   doSend(send);
   console.log(passhash);
  }

@@ -14,6 +14,8 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import org.eclipse.jetty.server.session.JDBCSessionIdManager.SessionIdTableSchema;
+
 import com.idttracker.packages.Package;
 import com.idttracker.packages.PackageHandler;
 import com.idttracker.util.PasswordChecker;
@@ -47,9 +49,9 @@ public class EventSocket{
         }else if(message.startsWith("update")){
         	
         }else if(message.startsWith("login")){
-        	String test = new String(message.split(" ")[2].getBytes(), "ISO-8859-1");
-        	System.out.println(test);
-        	new PasswordChecker("Test", "Test");
+        	String[] temp = message.split(" ");
+        	sessons.get(session.getId()).setisAdmin(new PasswordChecker(temp[2], temp[1]).isCorrect());
+        	System.out.println(new PasswordChecker(temp[2], temp[1]).isCorrect());
         }else{
         	
         }
