@@ -32,7 +32,16 @@ public class EventSocket{
     public void onMessage(String message, Session session) throws Exception {
         if(message.startsWith("uuid")){
         	String uuid = message.substring(5);
-        	if(!PackageHandler.isValid(uuid)){
+        	boolean alreadyused = false;
+        	for(String ids:client.getUUIDS()){
+        		if(ids.equals(uuid)){
+        			alreadyused = true;
+        			break;
+        		}
+        	}
+        	if(alreadyused){
+        		session.getBasicRemote().sendText("Invalid Already Entered");
+        	}else if(!PackageHandler.isValid(uuid)){
         		session.getBasicRemote().sendText("Valid UUID");
         		client.addUUID(uuid);
         		
