@@ -24,6 +24,10 @@ public class ComandHandler {
 			exit();
 		}else if(cmd.equalsIgnoreCase("get")){
 			get(words);
+		}else if(cmd.equalsIgnoreCase("help")){
+			help();
+		}else if(cmd.equalsIgnoreCase("list")){
+			list();
 		}
 	}
 	private static void color(String[] args){
@@ -48,7 +52,21 @@ public class ComandHandler {
 		}
 	}
 	private static void help(){
+		Console.sendInfo("Comands\n"
+				+ "Color <info/error/warning> <red value> <green value> <blue value>\n"
+				+ "get <uuid> ----Returns Package info\n"
+				+ "Exit  -------- exits server\n"
+				+ "list ---- lists all active packages");
 		
+	}
+	private static void list(){
+		String[] uuids = PackageHandler.getUUIDs();
+		if(uuids.length >0){
+			for(String uuid:uuids){
+				Console.sendInfo(uuid);
+			}
+		}
+		Console.sendInfo("Active Packages: " + PackageHandler.getUUIDs().length);
 	}
 	private static void get(String[] args){
 		Console.sendInfo(PackageHandler.getPackage(args[1]).toString());

@@ -2,6 +2,7 @@ package com.idttracker.packages;
 
 
 import java.sql.Timestamp;
+import java.util.TimeZone;
 
 //2015-12-08T08:42:33.188-05:00
 /**
@@ -13,6 +14,7 @@ public class Package {
 	private double desLat, desLon, curLat, curLon, dist, totalDist, setDist;
 	private String name;
 	public Timestamp first, last, ETA;
+	private Timestamp lastUpdate = new Timestamp(System.currentTimeMillis());
 
 	public Package(double destinationLat, double destinationLon, String n){
 		name = n;
@@ -21,7 +23,7 @@ public class Package {
 
 	}
 	public void update(double lat, double lon, Timestamp time){
-		
+		lastUpdate.setTime(System.currentTimeMillis());
 		curLat = lat;
 		curLon = lon;
 		double theta = curLon - desLon;
@@ -62,8 +64,11 @@ public class Package {
 	public Timestamp getETA(){
 		return ETA;
 	}
+	public Timestamp getLastUpdate(){
+		return lastUpdate;
+	}
 	public String toString(){
-		return "Name: " + name + "ETA: " + null + " Distance: " + dist + "CurLat/lon:" + curLat+"/"+curLon + "DesLat/Lon: " + desLat+"/"+desLon;
+		return "Name: " + name + "ETA: " + ETA + "  " + TimeZone.getDefault().getDisplayName() + " Distance: " + dist + "CurLat/lon:" + curLat+"/"+curLon + "DesLat/Lon: " + desLat+"/"+desLon;
 	}
 	
 

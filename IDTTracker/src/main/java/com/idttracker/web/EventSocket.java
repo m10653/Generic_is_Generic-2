@@ -61,7 +61,7 @@ public class EventSocket{
         	
         	for(int i = 0; i < uuids.length;i++){
         		Package temp = PackageHandler.getPackage(uuids[i]);
-                JsonObject packageupdate = Json.createObjectBuilder().add("name",temp.getName()).add("dist", temp.getDis()).add("curLoc", Json.createArrayBuilder().add(temp.getLocation()[0]).add(temp.getLocation()[1])).add("desloc", Json.createArrayBuilder().add(temp.getDestination()[0]).add(temp.getDestination()[1])).build();
+                JsonObject packageupdate = Json.createObjectBuilder().add("name",temp.getName()).add("dist", temp.getDis()).add("eta", temp.getETA().toString()).add("curLoc", Json.createArrayBuilder().add(temp.getLocation()[0]).add(temp.getLocation()[1])).add("desloc", Json.createArrayBuilder().add(temp.getDestination()[0]).add(temp.getDestination()[1])).build();
                 arraybuilder.add(packageupdate);
         	}
         	JsonObject packages =Json.createObjectBuilder().add("packages",arraybuilder.build()).build();
