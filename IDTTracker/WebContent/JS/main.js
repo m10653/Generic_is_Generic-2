@@ -43,13 +43,7 @@ $(document).ready(function() { // Get UUID from text box
 	
 	
 
-    	  // Create a marker and set its position.
-    	  var marker = new google.maps.Marker({
-    	    map: map,
-    	    position: myLatLng,
-    	    title: 'Hello World!'
-			
-    	  });
+    	 initMap(60, 60);
 	   
   function uuid()
   {
@@ -64,7 +58,7 @@ $(document).ready(function() { // Get UUID from text box
 		document.getElementById("uuidbutton").value = dgt2;
 		//document.write(newlat);
 		document.getElementById("output").value = "	" + "Lat: " + newlat;
-		var dgtx = dgt1 + dgt2 + dgt3 + dgt4 + dgt5;
+	//	var dgtx = dgt1 + dgt2 + dgt3 + dgt4 + dgt5;
 		
 		doSend(uuid);
 		

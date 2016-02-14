@@ -1,4 +1,4 @@
-function initMap() {
+function initMap(a, b) {
 	
 	var lat = 50;
 	var lng = 50;
@@ -8,7 +8,7 @@ function initMap() {
     center: latlong
   });
 
-  var contentString = "lat: " + lat + "long:" + lng;
+  var contentString = "lat: " + lat + "\n" + "long:" + lng;
 
   var infowindow = new google.maps.InfoWindow({
     content: contentString
