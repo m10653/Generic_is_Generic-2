@@ -102,7 +102,7 @@ $(document).ready(function() { // Get UUID from text box
   function onOpen(evt)
   {
     writeToScreen("CONNECTED");
-    doSend(evt);
+    //doSend(evt);
   }
 
   function onClose(evt)
@@ -113,7 +113,7 @@ $(document).ready(function() { // Get UUID from text box
   function onMessage(evt)
   {
     writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
-    websocket.close();
+  //  websocket.close();
   }
 
   function onError(evt)
