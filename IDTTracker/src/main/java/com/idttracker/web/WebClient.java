@@ -13,6 +13,7 @@ public class WebClient {
 	public WebClient(Session sess){
 		session = sess;
 	}
+	
 	public void addUUID(String u){
 		UUIDS.add(u);
 	}
@@ -22,8 +23,12 @@ public class WebClient {
 	public void setisAdmin(boolean admin){
 		isAdmin = admin;
 	}
-	public List<String> getUUIDS(){
-		return UUIDS;
+	public String[] getUUIDS(){
+		System.out.println(UUIDS.size());
+		String[] uuids = new String[UUIDS.size()];
+		
+		uuids = UUIDS.toArray(uuids);
+		return uuids;
 	}
 	public Session getSession(){
 		return session;
