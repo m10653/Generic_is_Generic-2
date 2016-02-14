@@ -24,7 +24,7 @@ public class EventSocket{
 	private WebClient client;
     @OnOpen
     public void onWebSocketConnect(Session sess){
-        System.out.println("Socket Connected: " + sess);
+        Console.sendInfo("Socket Connected: " + sess); // Comment out to prevent spam under high load.
         client = new WebClient(sess);
     }
     
@@ -65,7 +65,6 @@ public class EventSocket{
                 arraybuilder.add(packageupdate);
         	}
         	JsonObject packages =Json.createObjectBuilder().add("packages",arraybuilder.build()).build();
-        	System.out.println("Object Sent");
         	
             session.getBasicRemote().sendObject(packages);
             
@@ -80,7 +79,6 @@ public class EventSocket{
         		session.getBasicRemote().sendText("Invalid Login");
         	}
         	client.setisAdmin(new PasswordChecker(temp[2], temp[1]).isCorrect());
-        	System.out.println(new PasswordChecker(temp[2], temp[1]).isCorrect());
         }else{
         	session.close(new CloseReason(CloseCodes.UNEXPECTED_CONDITION, "Invalid Comand"));
         }
@@ -91,12 +89,13 @@ public class EventSocket{
     @OnClose
     public void onWebSocketClose(CloseReason reason, Session sess)
     {
-        System.out.println("Socket Closed: " + reason);
+        Console.sendInfo("Socket Closed: " + reason); // Comment out to prevent spam under high load.
     }
     
     @OnError
     public void onWebSocketError(Throwable cause, Session sess)
     {
+    	Console.sendWarning("Websocket Error: "+cause.toString());
 //        cause.printStackTrace(System.err);
     }
 }

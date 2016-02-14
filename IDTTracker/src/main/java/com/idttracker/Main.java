@@ -20,8 +20,10 @@ public class Main {
 		Webserver webserver;
 		if(Boolean.parseBoolean(Config.read("bindip"))){
 			webserver = new Webserver(Integer.parseInt(Config.read("port")), Config.read("address"));
+			Console.sendInfo("Server Bound to "+ Config.read("address")+":"+ Config.read("port"));
 		}else{
 			webserver = new Webserver(Integer.parseInt(Config.read("port")));
+			Console.sendInfo("Server Bound to Port:" + Config.read("port"));
 		}
 		webserver.start();
 		Console.sendInfo("Server Started");

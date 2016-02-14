@@ -19,24 +19,10 @@ import com.google.gson.reflect.TypeToken;
 public class Parser {
 	public static Map<String, String> parseBody(String body){
 		Gson gson = new Gson();
-		Type type = new TypeToken<Map<String, String>>(){}.getType(); //TODO:Learn what the crap is going on here.
+		Type type = new TypeToken<Map<String, String>>(){}.getType();
 		Map<String,String> parsed = gson.fromJson(body, type);
 		return parsed;
 	}
-
-//	public static Map<String, String> parseBody(String body) { // Returns a map TODO: del old code
-//																// of the JSON
-//																// encoded post
-//																// body and
-//																// returns a map
-//		Map<String, String> values = new HashMap<String, String>();
-//		JSONObject obj = new JSONObject(body);
-//		String[] names = JSONObject.getNames(obj);
-//		for (String str : names) {
-//			values.put(str, obj.getString(str));
-//		}
-//		return values;
-//	}
 
 	public static String parseUrl(String query, String name) { 
 		
@@ -106,7 +92,7 @@ public class Parser {
 	public static Timestamp parseTimeStamp(String timeStamp) { 
 		try {
 		      DateFormat formatter;
-		      formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"); //TODO java.util.TimeZone.getDefault() get system timezone and display
+		      formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 		      Date date = formatter.parse(timeStamp);
 		      java.sql.Timestamp timeStampDate = new Timestamp(date.getTime());
 

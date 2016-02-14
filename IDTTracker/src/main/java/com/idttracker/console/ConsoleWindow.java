@@ -153,7 +153,7 @@ public class ConsoleWindow{
 			document.setParagraphAttributes(parnum, str.length(), style, false);
 			parnum+= str.length();
 		} catch (Exception e) {
-			e.printStackTrace();
+			Console.sendError("Unkown Error :" + e.toString());
 		}
 	}
 	
@@ -165,8 +165,7 @@ public class ConsoleWindow{
 				document.remove(0,root.getElement(0).getEndOffset());
 				
 			} catch (BadLocationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Console.sendError("Unkown Error :" + e.toString());
 			}
 		}
 	}

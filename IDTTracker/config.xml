@@ -3,6 +3,7 @@
 <port>8080</port>
 <bindip>true</bindip>
 <address>192.168.1.169</address>
+<encoding>ISO-8859-1</encoding>
 <openWebUIOnStartup>false</openWebUIOnStartup>
 <ConsoleGUI>true</ConsoleGUI>
 <MaxLineBuffer>100</MaxLineBuffer>

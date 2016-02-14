@@ -3,7 +3,6 @@ package com.idttracker.console;
 import java.awt.Color;
 
 import com.idttracker.packages.PackageHandler;
-import com.idttracker.web.EventClient;
 
 
 public class ComandHandler {
