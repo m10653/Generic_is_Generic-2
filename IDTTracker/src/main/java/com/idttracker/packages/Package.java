@@ -70,6 +70,4 @@ public class Package {
 	public String toString(){
 		return "Name: " + name + "ETA: " + ETA + "  " + TimeZone.getDefault().getDisplayName() + " Distance: " + dist + "CurLat/lon:" + curLat+"/"+curLon + "DesLat/Lon: " + desLat+"/"+desLon;
 	}
-	
-
 }
