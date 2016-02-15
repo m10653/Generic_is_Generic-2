@@ -59,7 +59,7 @@ public class ComandHandler {
 				+ "get <uuid> ----Returns Package info\n"
 				+ "Exit  -------- exits server\n"
 				+ "list ---- lists all active packages\n"
-				+ "set <setting name> <value>");
+				+ "set <setting name> <value>\n");
 		
 	}
 	private static void list(){

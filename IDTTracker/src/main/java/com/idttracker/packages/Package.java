@@ -31,6 +31,8 @@ public class Package {
 		dist = Math.acos(dist);
 		dist = Math.toDegrees(dist);
 		dist = dist * 60 * 1.1515;
+		
+		
 		first = last;
 		if(first==null){
 			last = time;

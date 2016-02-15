@@ -72,7 +72,7 @@ public class ConsoleWindow{
 		
 			error = sc.addStyle("(Error)", null);
 			error.addAttribute(StyleConstants.Foreground, Color.RED);
-			error.addAttribute(StyleConstants.Bold, new Boolean(true));
+			error.addAttribute(StyleConstants.Bold, true);
 	
 			textArea = new JTextPane(document);
 			textArea.setBackground(new Color(50, 50, 50));
@@ -161,6 +161,7 @@ public class ConsoleWindow{
 		Element root = document.getDefaultRootElement();
 		while(root.getElementCount() > maxLines){
 			try {
+				
 				parnum-= document.getText(0,root.getElement(0).getEndOffset()).length();
 				document.remove(0,root.getElement(0).getEndOffset());
 				
