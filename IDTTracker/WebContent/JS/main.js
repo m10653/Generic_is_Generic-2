@@ -1,16 +1,10 @@
-$(document).ready(function() {
-
-    initMap();
-});
-
 $(window).load(function() {
      $("body").removeClass("preload");
      $("#boxes").hide();
      
    });
    
-   
-   
+   var markers = {};
    $("#loginbutton").click(function(){
 
        $("#boxes").toggle(1000);
@@ -19,9 +13,7 @@ $(window).load(function() {
     $('.uuid').keydown(function(event) {
         if (event.keyCode == 13) {
             enterid(document.getElementById("uuidbutton").value);
-			document.getElementById("uuidbutton").value = "";
-		
-			return false;
+            return false;
          }
     });
 });
@@ -34,10 +26,9 @@ $(document).ready(function() { // Get UUID from text box
     });
 });
  
-
+ 
  function enterid(uuid){
   console.log(uuid);
-   doSend("uuid " + uuid);
  }
  function login(){
   var user = document.getElementById("user").value;
@@ -46,15 +37,37 @@ $(document).ready(function() { // Get UUID from text box
   var send = "login " + user + " " + passhash;
   doSend(send);
   console.log(passhash);
- } 
- 
+ }
+ function password()
+ {
+  var pswrd = document.getElementById("test").value = "\u5929\u5730\u7384\u9ec3";
+ }
+    
   function uuid()
   {
+  
+ 
+ 
   var uuid = document.getElementById("uuidbutton").value;
+  var newlat;
+  var newlong;
+  
+  
+  
+  //document.getElementById("uuidbutton").value = dgt2;
+  //document.write(newlat);
+  //document.getElementById("output").value = " " + "Lat: " + newlat;
+ // var dgtx = dgt1 + dgt2 + dgt3 + dgt4 + dgt5;
+  
   doSend(uuid);
+  
+  
+  
+    
+  
   }
   
-  var wsUri = "ws://mc.m1gaming.net:8080/ws/";
+   var wsUri = "ws://mc.m1gaming.net:8080/ws/";
   var output;
 
   function init()
@@ -67,7 +80,7 @@ $(document).ready(function() { // Get UUID from text box
   {
     websocket = new WebSocket(wsUri);
     websocket.onopen = function(evt) { onOpen(evt) };
-    websocket.onclose = function(evt) { onClose(evt) };
+    //websocket.onclose = function(evt) { onClose(evt) };
     websocket.onmessage = function(evt) { onMessage(evt) };
     websocket.onerror = function(evt) { onError(evt) };
   }
@@ -86,21 +99,11 @@ $(document).ready(function() { // Get UUID from text box
   function onMessage(evt)
   {
     writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
-	console.log(evt.data);
-	var aos = evt.data.split(" ");
-	var uuid = aos[0];
-	var name = aos[1];
-	var dist = aos[2];
-	var eta = aos[3] + " " + aos[4];
 	
-	var curlat = aos[5];
-	var curlon = aos[6];
-	var deslat = aos[7];
-	var deslon = aos[8];
-	//info(uuid, name, dist, eta);
-	console.log(curlat);
-	console.log(curlon);
-	move(curlat, curlon);
+	var aos = evt.data.split(" ");
+	markers[aos[0]] = {"name": aos[1], "dist": aos[2], "eta": aos[3] + " " + aos[4], "curlat": aos[5], "curlon": aos[6], "deslat": aos[7], "deslon": aos[8], "marker": new google.maps.Marker(position: new google.maps.LatLng() )};
+	console.log(markers[aos[0]]);
+	move(markers[aos[0]].curlat, markers[aos[0]].curlon);
   }
 
   function onError(evt)
@@ -121,7 +124,6 @@ $(document).ready(function() { // Get UUID from text box
     pre.style.wordWrap = "break-word";
     pre.innerHTML = message;
     output.appendChild(pre);
-	console.log("orange");
   }
 
   window.addEventListener("load", init, false);

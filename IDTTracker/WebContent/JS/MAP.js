@@ -21,7 +21,10 @@
         });
     
 			infowindow.open(map, marker);
-			
+			 
+			 marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
 
 function myLoop () {           //  create a loop function
    setTimeout(function () {    //  call a 3s setTimeout when the loop is called
@@ -36,8 +39,8 @@ function myLoop () {           //  create a loop function
 myLoop();  
 
 
-        });
-    }
+        }
+    
 	
 	function move(a, b)
 	{
