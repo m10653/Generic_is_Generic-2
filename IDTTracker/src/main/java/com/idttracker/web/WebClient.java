@@ -24,7 +24,6 @@ public class WebClient {
 		isAdmin = admin;
 	}
 	public String[] getUUIDS(){
-		System.out.println(UUIDS.size());
 		String[] uuids = new String[UUIDS.size()];
 		
 		uuids = UUIDS.toArray(uuids);

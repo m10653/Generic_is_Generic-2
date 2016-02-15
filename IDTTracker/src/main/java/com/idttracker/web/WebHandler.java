@@ -50,7 +50,6 @@ public class WebHandler extends AbstractHandler{
 			
 			if(uuid != null && values.get("lat") != null && values.get("lon") != null && values.get("ele") != null && values.get("time") != null){
 				PackageHandler.updatePackage(uuid, Double.parseDouble(values.get("lat")),  Double.parseDouble(values.get("lat")),0, values.get("time")); // TODO add elevation
-				System.out.println("updated");
 			}
 			response.setContentLength(0);
 			

@@ -11,9 +11,7 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 
 public class RedirectHandler extends AbstractHandler {
 
-	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
-		// TODO Auto-generated method stub
+	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
 		response.setContentLength(0);
 		response.sendRedirect("/");

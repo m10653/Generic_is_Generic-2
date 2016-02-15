@@ -12,6 +12,8 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.websocket.jsr356.server.ServerContainer;
 import org.eclipse.jetty.websocket.jsr356.server.deploy.WebSocketServerContainerInitializer;
 
+import com.idttracker.console.Console;
+
 
 
 public class Webserver{
@@ -22,7 +24,6 @@ public class Webserver{
 		host = null;
 	}
 	public Webserver(int port, String adress){
-//		TODO: Add Adress Binding
 		this.port = port;
 		host = adress;
 	}
@@ -72,7 +73,7 @@ public class Webserver{
 	            wscontainer.addEndpoint(EventSocket.class);
 	            server.start();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			Console.sendError(e.toString());
 			e.printStackTrace();
 		}
 		

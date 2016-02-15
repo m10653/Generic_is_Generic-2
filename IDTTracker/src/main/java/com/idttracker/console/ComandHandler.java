@@ -3,7 +3,7 @@ package com.idttracker.console;
 import java.awt.Color;
 
 import com.idttracker.packages.PackageHandler;
-import com.idttracker.web.EventClient;
+import com.idttracker.util.Config;
 
 
 public class ComandHandler {
@@ -24,6 +24,12 @@ public class ComandHandler {
 			exit();
 		}else if(cmd.equalsIgnoreCase("get")){
 			get(words);
+		}else if(cmd.equalsIgnoreCase("help")){
+			help();
+		}else if(cmd.equalsIgnoreCase("list")){
+			list();
+		}else if(cmd.equalsIgnoreCase("set")){
+			set(words);
 		}
 	}
 	private static void color(String[] args){
@@ -48,10 +54,33 @@ public class ComandHandler {
 		}
 	}
 	private static void help(){
+		Console.sendInfo("Comands\n"
+				+ "Color <info/error/warning> <red value> <green value> <blue value>\n"
+				+ "get <uuid> ----Returns Package info\n"
+				+ "Exit  -------- exits server\n"
+				+ "list ---- lists all active packages\n"
+				+ "set <setting name> <value>\n");
 		
+	}
+	private static void list(){
+		String[] uuids = PackageHandler.getUUIDs();
+		if(uuids.length >0){
+			for(String uuid:uuids){
+				Console.sendInfo(uuid);
+			}
+		}
+		Console.sendInfo("Active Packages: " + PackageHandler.getUUIDs().length);
 	}
 	private static void get(String[] args){
 		Console.sendInfo(PackageHandler.getPackage(args[1]).toString());
+	}
+	private static void set(String[] args){
+		Config.write(args[1], args[2]);
+		if(Config.read(args[1]).equals(args[2])){
+			Console.sendInfo("Setting Saved");
+		}else{
+			Console.sendError("Unable to save setting");
+		}
 	}
 	private static void exit(){
 		System.exit(0);

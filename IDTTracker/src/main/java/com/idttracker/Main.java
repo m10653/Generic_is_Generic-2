@@ -2,7 +2,6 @@ package com.idttracker;
 
 import java.awt.Desktop;
 import java.net.URI;
-
 import com.idttracker.console.ComandHandler;
 import com.idttracker.console.Console;
 import com.idttracker.console.ConsoleWindow;
@@ -15,8 +14,15 @@ public class Main {
 		Console.addConsoleWindow(window);
 		ComandHandler.addConsoleWindow(window);
 		Console.sendInfo("Starting server.......");
-		Webserver wserver = new Webserver(Integer.parseInt(Config.read("port")));
-		wserver.start();
+		Webserver webserver;
+		if(Boolean.parseBoolean(Config.read("bindip"))){
+			webserver = new Webserver(Integer.parseInt(Config.read("port")), Config.read("address"));
+			Console.sendInfo("Server Bound to "+ Config.read("address")+":"+ Config.read("port"));
+		}else{
+			webserver = new Webserver(Integer.parseInt(Config.read("port")));
+			Console.sendInfo("Server Bound to Port:" + Config.read("port"));
+		}
+		webserver.start();
 		Console.sendInfo("Server Started");
 		if (Desktop.isDesktopSupported() && Boolean.parseBoolean(Config.read("openWebUIOnStartup"))) { 
 			try {

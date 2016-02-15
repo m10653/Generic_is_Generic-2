@@ -24,7 +24,7 @@ public class EventSocket{
 	private WebClient client;
     @OnOpen
     public void onWebSocketConnect(Session sess){
-        System.out.println("Socket Connected: " + sess);
+        Console.sendInfo("Socket Connected: " + sess); // Comment out to prevent spam under high load.
         client = new WebClient(sess);
     }
     
@@ -56,18 +56,33 @@ public class EventSocket{
         	}else{
         		uuids =  client.getUUIDS();
         	}
-        	
-        	JsonArrayBuilder arraybuilder = Json.createArrayBuilder();
-        	
-        	for(int i = 0; i < uuids.length;i++){
-        		Package temp = PackageHandler.getPackage(uuids[i]);
-                JsonObject packageupdate = Json.createObjectBuilder().add("name",temp.getName()).add("dist", temp.getDis()).add("curLoc", Json.createArrayBuilder().add(temp.getLocation()[0]).add(temp.getLocation()[1])).add("desloc", Json.createArrayBuilder().add(temp.getDestination()[0]).add(temp.getDestination()[1])).build();
-                arraybuilder.add(packageupdate);
+        	if(uuids.length > 0){
+        		System.out.println("update");
+        		for(int i = 0; i < uuids.length; i++){
+        			System.out.println("PAckage");
+        			Package temp = PackageHandler.getPackage(uuids[i]);
+        			double[] curlatlon= temp.getLocation();
+        			double[] deslatlon = temp.getDestination();
+        			session.getBasicRemote().sendText(uuids[i]+ " "+ temp.getName() +" " + temp.getDis() + " " + temp.getETA() + " " + curlatlon[0] + " " + curlatlon[1] + " " + deslatlon[0] + " " + deslatlon[1] + " ");
+        		}
+        	}else{
+        		session.getBasicRemote().sendText("NoPackages");
         	}
-        	JsonObject packages =Json.createObjectBuilder().add("packages",arraybuilder.build()).build();
-        	System.out.println("Object Sent");
+//        	JsonArrayBuilder arraybuilder = Json.createArrayBuilder();
         	
-            session.getBasicRemote().sendObject(packages);
+//        	for(int i = 0; i < uuids.length;i++){
+//        		Package temp = PackageHandler.getPackage(uuids[i]);
+//                JsonObject packageupdate = Json.createObjectBuilder().add("uuid", uuids[i]).add("name",temp.getName()).add("dist", temp.getDis()).add("eta", temp.getETA().toString()).add("curLoc", Json.createArrayBuilder().add(temp.getLocation()[0]).add(temp.getLocation()[1])).add("desloc", Json.createArrayBuilder().add(temp.getDestination()[0]).add(temp.getDestination()[1])).build();
+//                arraybuilder.add(packageupdate);
+//        	}
+//        	if(uuids.length != 0){
+//        	JsonObject packages =Json.createObjectBuilder().add("packages",arraybuilder.build()).build();
+//        	session.getBasicRemote().sendObject(packages);
+//        	}else{
+//        		System.out.println("test");
+//        	}
+        	
+            
             
         }else if(message.startsWith("login")){
         	String[] temp = message.split(" ");
@@ -79,8 +94,6 @@ public class EventSocket{
         		Console.sendWarning("Auth Failure: Admin login");
         		session.getBasicRemote().sendText("Invalid Login");
         	}
-        	client.setisAdmin(new PasswordChecker(temp[2], temp[1]).isCorrect());
-        	System.out.println(new PasswordChecker(temp[2], temp[1]).isCorrect());
         }else{
         	session.close(new CloseReason(CloseCodes.UNEXPECTED_CONDITION, "Invalid Comand"));
         }
@@ -91,12 +104,13 @@ public class EventSocket{
     @OnClose
     public void onWebSocketClose(CloseReason reason, Session sess)
     {
-        System.out.println("Socket Closed: " + reason);
+        Console.sendInfo("Socket Closed: " + reason); // Comment out to prevent spam under high load.
     }
     
     @OnError
     public void onWebSocketError(Throwable cause, Session sess)
     {
+    	Console.sendWarning("Websocket Error: "+cause.toString());
 //        cause.printStackTrace(System.err);
     }
 }
