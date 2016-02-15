@@ -24,42 +24,50 @@
            move(50, -50);
 			console.log("moved");
 			infowindow.open(map, marker);
+			
+			var i = 1;                     //  set your counter to 1
+
+function myLoop () {           //  create a loop function
+   setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+      doSend("update");          //  your code here
+                      //  increment the counter
+              //  if the counter < 10, call the loop function
+         myLoop();             //  ..  again which will trigger another 
+                            //  ..  setTimeout()
+   }, 3000)
+}
+
+myLoop();  
+
+
         });
     }
 	
 	function move(a, b)
 	{
-		 var result = [a, b];
-            transition(result);
+	            moveMarker(a, b);
 			console.log("moved 2");
 	}
     
-    var numDeltas = 100;
-    var delay = 10; //milliseconds
-    var i = 0;
-    var deltaLat;
-    var deltaLng;
-    function transition(result){
-        i = 0;
-        deltaLat = (result[0] - position[0])/numDeltas;
-        deltaLng = (result[1] - position[1])/numDeltas;
-        moveMarker();
-    }
 	
-	 var contentString = "" + "apple";
-		  var infowindow = new google.maps.InfoWindow({
+	 var contentString = "";
+    function info(a, b, c, d)
+	{
+			contentString = "uuid: " + a + "name: " + b + "distance to destination: " + c + "estimated time of arrival: " + d;
+			console.log("banana");
+	}
+	
+	var infowindow = new google.maps.InfoWindow({	  
     content: contentString
   });
-    
-    function moveMarker(){
-        position[0] += deltaLat;
-        position[1] += deltaLng;
-        var latlng = new google.maps.LatLng(position[0], position[1]);
+  
+		
+  
+    function moveMarker(a, b){
+  
+        var latlng = new google.maps.LatLng(a, b);
         marker.setPosition(latlng);
-        if(i!=numDeltas){
-            i++;
-            setTimeout(moveMarker, delay);
-        }
+     
     }
 google.maps.event.addDomListener(window, 'load', initMap);
     

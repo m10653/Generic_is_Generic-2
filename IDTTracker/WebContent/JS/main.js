@@ -10,6 +10,7 @@ $(window).load(function() {
    });
    
    
+   
    $("#loginbutton").click(function(){
 
        $("#boxes").toggle(1000);
@@ -19,7 +20,8 @@ $(window).load(function() {
         if (event.keyCode == 13) {
             enterid(document.getElementById("uuidbutton").value);
 			document.getElementById("uuidbutton").value = "";
-            return false;
+		
+			return false;
          }
     });
 });
@@ -109,23 +111,21 @@ $(document).ready(function() { // Get UUID from text box
   function onMessage(evt)
   {
     writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
+	console.log(evt.data);
+	var aos = evt.data.split(" ");
+	var uuid = aos[0];
+	var name = aos[1];
+	var dist = aos[2];
+	var eta = aos[3] + " " + aos[4];
 	
-	var objct = JSON.parse(evt.data);
-	writeToScreen(objct.name);
-	
-	console.log(objct);
-	console.log(objct.dist);
-	var dis = objct.dist;
-	
-	objct.curLoc;
-	var desLoc = objct.desLoc;
-	
-	console.log(objct.curLoc[0]);
-	console.log(desLoc);
-	initMap(dis, objct);
-	
-	
-  //  websocket.close();
+	var curlat = aos[5];
+	var curlon = aos[6];
+	var deslat = aos[7];
+	var deslon = aos[8];
+	//info(uuid, name, dist, eta);
+	console.log(curlat);
+	console.log(curlon);
+	move(curlat, curlon);
   }
 
   function onError(evt)
@@ -146,6 +146,7 @@ $(document).ready(function() { // Get UUID from text box
     pre.style.wordWrap = "break-word";
     pre.innerHTML = message;
     output.appendChild(pre);
+	console.log("orange");
   }
 
   window.addEventListener("load", init, false);
