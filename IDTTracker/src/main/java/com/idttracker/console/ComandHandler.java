@@ -3,6 +3,7 @@ package com.idttracker.console;
 import java.awt.Color;
 
 import com.idttracker.packages.PackageHandler;
+import com.idttracker.util.Config;
 
 
 public class ComandHandler {
@@ -27,6 +28,8 @@ public class ComandHandler {
 			help();
 		}else if(cmd.equalsIgnoreCase("list")){
 			list();
+		}else if(cmd.equalsIgnoreCase("set")){
+			set(words);
 		}
 	}
 	private static void color(String[] args){
@@ -55,7 +58,8 @@ public class ComandHandler {
 				+ "Color <info/error/warning> <red value> <green value> <blue value>\n"
 				+ "get <uuid> ----Returns Package info\n"
 				+ "Exit  -------- exits server\n"
-				+ "list ---- lists all active packages");
+				+ "list ---- lists all active packages\n"
+				+ "set <setting name> <value>");
 		
 	}
 	private static void list(){
@@ -69,6 +73,14 @@ public class ComandHandler {
 	}
 	private static void get(String[] args){
 		Console.sendInfo(PackageHandler.getPackage(args[1]).toString());
+	}
+	private static void set(String[] args){
+		Config.write(args[1], args[2]);
+		if(Config.read(args[1]).equals(args[2])){
+			Console.sendInfo("Setting Saved");
+		}else{
+			Console.sendError("Unable to save setting");
+		}
 	}
 	private static void exit(){
 		System.exit(0);

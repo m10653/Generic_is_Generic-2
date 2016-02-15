@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<list>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><list>
 <port>8080</port>
-<bindip>true</bindip>
-<address>192.168.1.169</address>
+<bindip>false</bindip>
+<address>127.0.0.1</address>
 <encoding>ISO-8859-1</encoding>
 <openWebUIOnStartup>false</openWebUIOnStartup>
 <ConsoleGUI>true</ConsoleGUI>
 <MaxLineBuffer>100</MaxLineBuffer>
 <username>Admin</username>
-<password>password</password>
+<password>password123</password>
 <cleanTime>18000000</cleanTime>
 <removepackages>36000000</removepackages>
 </list>
-

@@ -2,9 +2,6 @@ package com.idttracker;
 
 import java.awt.Desktop;
 import java.net.URI;
-import java.sql.Timestamp;
-import java.util.TimeZone;
-
 import com.idttracker.console.ComandHandler;
 import com.idttracker.console.Console;
 import com.idttracker.console.ConsoleWindow;

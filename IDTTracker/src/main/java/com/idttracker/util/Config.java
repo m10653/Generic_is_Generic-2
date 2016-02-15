@@ -65,7 +65,7 @@ public static String read(final String xml){
   }
 return value;  
  }
-public void write(String tag, String value){
+public static void write(String tag, String value){
 try{
 	String filepath = "config.xml";
 	DocumentBuilderFactory docFac = DocumentBuilderFactory.newInstance();
