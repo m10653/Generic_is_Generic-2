@@ -20,12 +20,8 @@
             title: "Your current location!"
         });
     
-        google.maps.event.addListener(map, 'click', function(me) {
-           move(50, -50);
-			console.log("moved");
 			infowindow.open(map, marker);
 			
-			var i = 1;                     //  set your counter to 1
 
 function myLoop () {           //  create a loop function
    setTimeout(function () {    //  call a 3s setTimeout when the loop is called
@@ -45,8 +41,8 @@ myLoop();
 	
 	function move(a, b)
 	{
-	            moveMarker(a, b);
-			console.log("moved 2");
+	        var latlng = new google.maps.LatLng(a, b);
+			marker.setPosition(latlng);
 	}
     
 	
@@ -63,12 +59,6 @@ myLoop();
   
 		
   
-    function moveMarker(a, b){
-  
-        var latlng = new google.maps.LatLng(a, b);
-        marker.setPosition(latlng);
-     
-    }
 google.maps.event.addDomListener(window, 'load', initMap);
     
 

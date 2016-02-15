@@ -46,40 +46,15 @@ $(document).ready(function() { // Get UUID from text box
   var send = "login " + user + " " + passhash;
   doSend(send);
   console.log(passhash);
- }
- function password()
- {
-  var pswrd = document.getElementById("test").value = "\u5929\u5730\u7384\u9ec3";
- }
-   // initMap(50, 30);
-  
+ } 
  
   function uuid()
   {
-  
-	
- 
   var uuid = document.getElementById("uuidbutton").value;
-  var newlat;
-  var newlong;
-  
-  
-  
-  document.getElementById("uuidbutton").value = dgt2;
-  //document.write(newlat);
-  document.getElementById("output").value = " " + "Lat: " + newlat;
-  //var dgtx = dgt1 + dgt2 + dgt3 + dgt4 + dgt5;
-  
   doSend(uuid);
-  
-  
-  
- 
-    
-  
   }
   
-   var wsUri = "ws://mc.m1gaming.net:8080/ws/";
+  var wsUri = "ws://mc.m1gaming.net:8080/ws/";
   var output;
 
   function init()
