@@ -47,10 +47,8 @@ public class WebHandler extends AbstractHandler{
 			String uuid = target.substring(20);
 			String body =request.getReader().readLine();
 			Map<String, String> values = Parser.parseBody(body);
-			
-			if(uuid != null && values.get("lat") != null && values.get("lon") != null && values.get("ele") != null && values.get("time") != null){
-				PackageHandler.updatePackage(uuid, Double.parseDouble(values.get("lat")),  Double.parseDouble(values.get("lat")),0, values.get("time")); // TODO add elevation
-			}
+
+			PackageHandler.updatePackage(uuid, Double.parseDouble(values.get("lat")),  Double.parseDouble(values.get("lat")),0, values.get("time")); // TODO add elevation Bug Here
 			response.setContentLength(0);
 			
 			baseRequest.setHandled(true);

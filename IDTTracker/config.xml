@@ -6,8 +6,8 @@
 <openWebUIOnStartup>false</openWebUIOnStartup>
 <ConsoleGUI>true</ConsoleGUI>
 <MaxLineBuffer>100</MaxLineBuffer>
-<username>Admin</username>
-<password>password123</password>
+<username>1</username>
+<password>1</password>
 <cleanTime>18000000</cleanTime>
 <removepackages>36000000</removepackages>
 </list>
