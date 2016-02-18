@@ -5,6 +5,9 @@ $(window).load(function() {
    });
    
    var markers = {};
+     
+	 console.log(x);
+
    $("#loginbutton").click(function(){
 
        $("#boxes").toggle(1000);
@@ -13,6 +16,7 @@ $(window).load(function() {
     $('.uuid').keydown(function(event) {
         if (event.keyCode == 13) {
             enterid(document.getElementById("uuidbutton").value);
+			console.log(text);
             return false;
          }
     });
@@ -101,9 +105,54 @@ $(document).ready(function() { // Get UUID from text box
     writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
 	
 	var aos = evt.data.split(" ");
-	markers[aos[0]] = {"name": aos[1], "dist": aos[2], "eta": aos[3] + " " + aos[4], "curlat": aos[5], "curlon": aos[6], "deslat": aos[7], "deslon": aos[8], "marker": new google.maps.Marker(position: new google.maps.LatLng() )};
+	
+	if(markers[aos[0]] == undefined){ // new Package
+  
+ var latlon = new google.maps.LatLng(aos[5], aos[6]);
+   markers[aos[0]] = {"name": aos[1], "dist": aos[2], "eta": aos[3] + " " + aos[4], "curlat": aos[5], "curlon": aos[6], "deslat": aos[7], "deslon": aos[8], "marker": new google.maps.Marker({position: latlon, map: map, title: "name"})};
+  }
+  
+   /*function move(a, b)
+	{
+	        var latlng = new google.maps.LatLng(a[b].curlat, a[b].curlon);
+			a[b].marker.setPosition(latlng);
+	}
+  */
+  else {
+	markers[aos[0]].dist = aos[2];
+	markers[aos[0]].eta = aos[3] + " " + aos[4];
+	markers[aos[0]].curlat = aos[5]; 
+  markers[aos[0]].curlon = aos[6];
+ 
+  }
 	console.log(markers[aos[0]]);
-	move(markers[aos[0]].curlat, markers[aos[0]].curlon);
+	//move(markers[aos[0]].curlat, markers[aos[0]].curlon);
+	//markers[aos[0]] = {"name": aos[1], "dist": aos[2], "eta": aos[3] + " " + aos[4], "curlat": aos[5], "curlon": aos[6], "deslat": aos[7], "deslon": aos[8], "marker": new google.maps.Marker(position: new google.maps.LatLng() )};
+	console.log(markers[aos[0]]);
+	//move(markers, aos[0]);
+	var latlng = new google.maps.LatLng(markers[aos[0]].curlat, markers[aos[0]].curlon);
+			//markers[aos[0]].marker.setPosition(latlng);
+	var marker = new google.maps.Marker({
+    position: latlng,
+    map: map,
+    title: 'Click for Status'
+  });
+	//info(markers[aos[0]], markers[aos[1]], markers[aos[2]], markers[aos[3]], markers[4]);
+	
+	var contentString = "";
+    
+			contentString = "<div>UUID: " + aos[0] + "</div><div> NAME: " + aos[1] + "</div> <div>DISTANCE TO DESTINATION: " + aos[2] +" miles"+ "</div> ESTIMATED TIME OF ARRIVAL: " + aos[3];
+			
+
+	var infowindow = new google.maps.InfoWindow({	  
+    content: contentString
+  });
+ 
+		marker.addListener('click', function() {
+    infowindow.open(map, marker);
+	console.log("avacodo");
+ }); 
+ console.log("banana");
   }
 
   function onError(evt)
