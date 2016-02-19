@@ -71,6 +71,7 @@ $(document).ready(function() { // Get UUID from text box
    var wsUri = "ws://mc.m1gaming.net:8080/ws/";
   var output;
   var websocket = undefined;
+  var infowindow;
 
   function init()
   {
@@ -113,23 +114,41 @@ $(document).ready(function() { // Get UUID from text box
     map: map,
     title: 'Click for Status'
   });
-  
+  var contentString = "";
+    
+			contentString = "<div>UUID: " + aos[0] + "</div><div> NAME: " + aos[1] + "</div> <div>DISTANCE TO DESTINATION: " + aos[2] +" miles"+ "</div> ESTIMATED TIME OF ARRIVAL: " + aos[3];
+ 
+	infowindow = new google.maps.InfoWindow({
+    content: contentString
+	  });
+	var flightPath;
+   markers[aos[0]] = {"name": aos[1], "dist": aos[2], "eta": aos[3] , "curlat": aos[4], "curlon": aos[5], "deslat": aos[6], "deslon": aos[7], "marker1": marker, "window": infowindow, "flightPath": flightPath};
    
-  
-   markers[aos[0]] = {"name": aos[1], "dist": aos[2], "eta": aos[3] + " " + aos[4], "curlat": aos[5], "curlon": aos[6], "deslat": aos[7], "deslon": aos[8], "marker1": marker};
+   markers[aos[0]].marker1.addListener('click', function() {
+    markers[aos[0]].window.open(map, markers[aos[0]].marker1);
+	var des = [ {lat: parseFloat(aos[4]), lng: parseFloat(aos[5])}, {lat: parseFloat(aos[6]), lng: parseFloat(aos[7])}];
+	markers[aos[0]].flightPath = new google.maps.Polyline({
+    path: des,
+    geodesic: true,
+    strokeColor: '#FF0000',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+	markers[aos[0]].flightPath.setMap(map);
+	google.maps.event.addListener(markers[aos[0]].infowindow ,'closeclick',function(){
+		markers[aos[0]].flightPath.setMap(null); // DID NOT WORK
+});
+  });
   }  else  if(markers[aos[0]] != undefined){
 	markers[aos[0]].dist = aos[2];
-	markers[aos[0]].eta = aos[3] + " " + aos[4];
-	markers[aos[0]].curlat = aos[5]; 
-  markers[aos[0]].curlon = aos[6];
-  var latlon = new google.maps.LatLng(aos[5], aos[6]);
+	markers[aos[0]].eta = aos[3];
+	markers[aos[0]].curlat = aos[4]; 
+  markers[aos[0]].curlon = aos[5];
+  var latlon = new google.maps.LatLng(aos[4], aos[5]);
   markers[aos[0]].marker1.setPosition(latlon);
  
   }
-  var des = [ {lat: aos[5], lng: aos[6]},
-    {lat: 21.291, lng: -157.821},
-    {lat: -18.142, lng: 178.431},
-    {lat: -27.467, lng: 153.027}];
+ 
 	console.log(markers[aos[0]]);
 	//move(markers[aos[0]].curlat, markers[aos[0]].curlon);
 	//markers[aos[0]] = {"name": aos[1], "dist": aos[2], "eta": aos[3] + " " + aos[4], "curlat": aos[5], "curlon": aos[6], "deslat": aos[7], "deslon": aos[8], "marker": new google.maps.Marker(position: new google.maps.LatLng() )};
@@ -139,29 +158,15 @@ $(document).ready(function() { // Get UUID from text box
 	
 	//info(markers[aos[0]], markers[aos[1]], markers[aos[2]], markers[aos[3]], markers[4]);
 	
-	var contentString = "";
-    
-			contentString = "<div>UUID: " + aos[0] + "</div><div> NAME: " + aos[1] + "</div> <div>DISTANCE TO DESTINATION: " + aos[2] +" miles"+ "</div> ESTIMATED TIME OF ARRIVAL: " + aos[3];
- 
-	var infowindow = new google.maps.InfoWindow({
-    content: contentString
-  });
+	
+
 	
 	
-  var flightPath = new google.maps.Polyline({
-    path: des,
-    geodesic: true,
-    strokeColor: '#FF0000',
-    strokeOpacity: 1.0,
-    strokeWeight: 2
-  });
+  
 
   
-  flightPath.setMap(map);
-  marker.addListener('click', function() {
-    infowindow.open(map, marker);
-	
-  });
+  
+  
 
  }
 

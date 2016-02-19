@@ -46,15 +46,20 @@ public class WebHandler extends AbstractHandler{
 		}else if(target.startsWith("/packagetrackupdate/")){
 			String uuid = target.substring(20);
 			String body =request.getReader().readLine();
-			Map<String, String> values = Parser.parseBody(body);
-
-			PackageHandler.updatePackage(uuid, Double.parseDouble(values.get("lat")),  Double.parseDouble(values.get("lat")),0, values.get("time")); // TODO add elevation Bug Here
-			response.setContentLength(0);
-			
-			baseRequest.setHandled(true);
-		}else{
-			baseRequest.setHandled(false);
-		}
+			System.out.println(body);
+			if(body.equals("{\"delivered\":\"true\"}")){
+				Console.sendInfo("Package : " + uuid + " Deleverd");
+				PackageHandler.close(uuid);
+			}else{
+				Map<String, String> values = Parser.parseBody(body);
+				
+				PackageHandler.updatePackage(uuid, Double.parseDouble(values.get("lat")),  Double.parseDouble(values.get("lat")),0, values.get("time")); // TODO add elevation Bug Here
+				response.setContentLength(0);
+			}
+				baseRequest.setHandled(true);
+			}else{
+				baseRequest.setHandled(false);
+			}
 		
 	}
 	

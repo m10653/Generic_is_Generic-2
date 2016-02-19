@@ -33,22 +33,22 @@ public class Package {
 		dist = dist * 60 * 1.1515;
 		
 		
-		first = last;
-		if(first==null){
-			last = time;
-			totalDist = dist;
-		}
-		else{
-			last = time;
-			long firstInMillis = first.getTime();
-			long lastInMillis = last.getTime();
-			long difference = lastInMillis - firstInMillis;
-			setDist = totalDist - dist;
-			long average = (long) (difference/setDist);
-			long distLeft = (long) (dist*average)+lastInMillis;
-			totalDist = dist;
-			ETA = new Timestamp(distLeft);
-		}
+//		first = last;
+//		if(first==null){
+//			last = time;
+//			totalDist = dist;
+//		}
+//		else{
+//			last = time;
+//			long firstInMillis = first.getTime();
+//			long lastInMillis = last.getTime();
+//			long difference = lastInMillis - firstInMillis;
+//			setDist = totalDist - dist;
+//			long average = (long) (difference/setDist);
+//			long distLeft = (long) (dist*average)+lastInMillis;
+//			totalDist = dist;
+//			ETA = new Timestamp(distLeft);
+//		}
 	}
 	public double[] getLocation(){
 		return new double [] {curLat,curLon};
