@@ -5,12 +5,20 @@ $(window).load(function() {
    });
    
    var markers = {};
-     
+	
 	 console.log(x);
 
+	//var login = document.getElementById("loginbutton")
+	
    $("#loginbutton").click(function(){
-
+	if(document.getElementById("pass").value != "" && document.getElementById("user").value != "")
+	   {
+			login();
+	   }
+	   
        $("#boxes").toggle(1000);
+	   
+	   
    });
  $(document).ready(function() { // Get UUID from text box
     $('.uuid').keydown(function(event) {
@@ -37,10 +45,12 @@ $(document).ready(function() { // Get UUID from text box
  function login(){
   var user = document.getElementById("user").value;
   var pass = document.getElementById("pass").value;
+  
   var passhash = CryptoJS.MD5(pass);
   var send = "login " + user + " " + passhash;
   doSend(send);
   console.log(passhash);
+  
  }
 
     
@@ -101,7 +111,7 @@ $(document).ready(function() { // Get UUID from text box
 
   function onMessage(evt)
   {
-    writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
+    //writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
 	
 	var aos = evt.data.split(" ");
 	console.log(aos[0]);
@@ -114,6 +124,29 @@ $(document).ready(function() { // Get UUID from text box
     map: map,
     title: 'Click for Status'
   });
+  
+  
+  
+  if(evt.data === "Invalid Login")
+  {
+	
+	
+	
+	document.getElementById("message").innerHTML = "invalid login";
+	document.getElementById("user").value = "";
+  document.getElementById("pass").value = "";
+	
+	
+	}
+else if(evt.data == "Valid Login")
+{
+	document.getElementById("message").innerHTML = "";
+	document.getElementById("user").value = "";
+  document.getElementById("pass").value = "";
+    $("#boxes").toggle(1000);
+}
+	
+  
   var contentString = "";
     
 			contentString = "<div>UUID: " + aos[0] + "</div><div> NAME: " + aos[1] + "</div> <div>DISTANCE TO DESTINATION: " + aos[2] +" miles"+ "</div> ESTIMATED TIME OF ARRIVAL: " + aos[3];
@@ -135,8 +168,11 @@ $(document).ready(function() { // Get UUID from text box
     strokeWeight: 2
   });
 	markers[aos[0]].flightPath.setMap(map);
-	google.maps.event.addListener(markers[aos[0]].infowindow ,'closeclick',function(){
+	google.maps.event.addListener(markers[aos[0]].window ,'closeclick',function(){
 		markers[aos[0]].flightPath.setMap(null); // DID NOT WORK
+		
+  
+  
 });
   });
   }  else  if(markers[aos[0]] != undefined){
@@ -148,7 +184,7 @@ $(document).ready(function() { // Get UUID from text box
   markers[aos[0]].marker1.setPosition(latlon);
  
   }
- 
+
 	console.log(markers[aos[0]]);
 	//move(markers[aos[0]].curlat, markers[aos[0]].curlon);
 	//markers[aos[0]] = {"name": aos[1], "dist": aos[2], "eta": aos[3] + " " + aos[4], "curlat": aos[5], "curlon": aos[6], "deslat": aos[7], "deslon": aos[8], "marker": new google.maps.Marker(position: new google.maps.LatLng() )};
@@ -173,11 +209,16 @@ $(document).ready(function() { // Get UUID from text box
   function onError(evt)
   {
     writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+	
+	
+		alert("error, cannot connect to server. Press ok to retry");
+		testWebSocket();
+	
   }
 
   function doSend(evt)
   {
-    writeToScreen("SENT: " + evt);
+    //writeToScreen("SENT: " + evt);
     websocket.send(evt);
   
   }
