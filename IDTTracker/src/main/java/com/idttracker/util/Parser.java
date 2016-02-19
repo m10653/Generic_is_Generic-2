@@ -99,7 +99,7 @@ public class Parser {
 		      return timeStampDate;
 		    } catch (ParseException e) {
 		      System.out.println("Exception :" + e);
-		      return null;
+		      return new Timestamp(System.currentTimeMillis());
 		}
 															
 	}
