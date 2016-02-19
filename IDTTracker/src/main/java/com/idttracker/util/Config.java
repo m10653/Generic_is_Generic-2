@@ -87,7 +87,6 @@ try{
 	DOMSource source = new DOMSource(doc);
 	StreamResult result = new StreamResult(new File(filepath));
 	trans.transform(source, result);
-	System.out.println("Done");
 	} 
 
 	catch (ParserConfigurationException pce) {

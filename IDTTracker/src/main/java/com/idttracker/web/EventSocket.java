@@ -57,9 +57,7 @@ public class EventSocket{
         		uuids =  client.getUUIDS();
         	}
         	if(uuids.length > 0){
-        		System.out.println("update");
         		for(int i = 0; i < uuids.length; i++){
-        			System.out.println("PAckage");
         			Package temp = PackageHandler.getPackage(uuids[i]);
         			double[] curlatlon= temp.getLocation();
         			double[] deslatlon = temp.getDestination();
@@ -68,22 +66,7 @@ public class EventSocket{
         	}else{
         		session.getBasicRemote().sendText("NoPackages");
         	}
-//        	JsonArrayBuilder arraybuilder = Json.createArrayBuilder();
-        	
-//        	for(int i = 0; i < uuids.length;i++){
-//        		Package temp = PackageHandler.getPackage(uuids[i]);
-//                JsonObject packageupdate = Json.createObjectBuilder().add("uuid", uuids[i]).add("name",temp.getName()).add("dist", temp.getDis()).add("eta", temp.getETA().toString()).add("curLoc", Json.createArrayBuilder().add(temp.getLocation()[0]).add(temp.getLocation()[1])).add("desloc", Json.createArrayBuilder().add(temp.getDestination()[0]).add(temp.getDestination()[1])).build();
-//                arraybuilder.add(packageupdate);
-//        	}
-//        	if(uuids.length != 0){
-//        	JsonObject packages =Json.createObjectBuilder().add("packages",arraybuilder.build()).build();
-//        	session.getBasicRemote().sendObject(packages);
-//        	}else{
-//        		System.out.println("test");
-//        	}
-        	
-            
-            
+
         }else if(message.startsWith("login")){
         	String[] temp = message.split(" ");
         	client.setisAdmin(new PasswordChecker(temp[2], temp[1]).isCorrect());

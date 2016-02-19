@@ -24,7 +24,6 @@ public class WebHandler extends AbstractHandler{
 			
 			
 			if(baseRequest.getQueryString() != null){
-					System.out.println(baseRequest.getQueryString());
 					String query = baseRequest.getQueryString();
 					Map<String,String> values = Parser.parseUrl(query);
 				if(!PackageHandler.isValid(values.get("uuid"))){
@@ -46,7 +45,6 @@ public class WebHandler extends AbstractHandler{
 		}else if(target.startsWith("/packagetrackupdate/")){
 			String uuid = target.substring(20);
 			String body =request.getReader().readLine();
-			System.out.println(body);
 			if(body.equals("{\"delivered\":\"true\"}")){
 				Console.sendInfo("Package : " + uuid + " Deleverd");
 				PackageHandler.close(uuid);
