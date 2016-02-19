@@ -55,11 +55,12 @@ public class ComandHandler {
 	}
 	private static void help(){
 		Console.sendInfo("Comands\n"
-				+ "Color <info/error/warning> <red value> <green value> <blue value>\n"
+				+ "Color <info/error/warning> <red value> <green value> <blue value> ---- sets Text Color in console window\n"
 				+ "get <uuid> ----Returns Package info\n"
 				+ "Exit  -------- exits server\n"
 				+ "list ---- lists all active packages\n"
-				+ "set <setting name> <value>\n");
+				+ "set <setting name> <value> --- changes a config setting\n"
+				+ "help -- shows this text");
 		
 	}
 	private static void list(){

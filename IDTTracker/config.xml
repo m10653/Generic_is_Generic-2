@@ -2,12 +2,13 @@
 <port>8080</port>
 <bindip>false</bindip>
 <address>127.0.0.1</address>
+<remoteaddress>localhost</remoteaddress>
 <encoding>ISO-8859-1</encoding>
-<openWebUIOnStartup>false</openWebUIOnStartup>
+<openWebUIOnStartup>true</openWebUIOnStartup>
 <ConsoleGUI>true</ConsoleGUI>
 <MaxLineBuffer>100</MaxLineBuffer>
-<username>1</username>
-<password>1</password>
+<username>admin</username>
+<password>password</password>
 <cleanTime>18000000</cleanTime>
 <removepackages>36000000</removepackages>
 </list>

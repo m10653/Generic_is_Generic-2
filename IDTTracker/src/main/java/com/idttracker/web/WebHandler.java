@@ -51,7 +51,7 @@ public class WebHandler extends AbstractHandler{
 			}else{
 				Map<String, String> values = Parser.parseBody(body);
 				
-				PackageHandler.updatePackage(uuid, Double.parseDouble(values.get("lat")),  Double.parseDouble(values.get("lat")),0, values.get("time")); // TODO add elevation Bug Here
+				PackageHandler.updatePackage(uuid, Double.parseDouble(values.get("lat")),  Double.parseDouble(values.get("lat")),0, values.get("time")); 
 				response.setContentLength(0);
 			}
 				baseRequest.setHandled(true);

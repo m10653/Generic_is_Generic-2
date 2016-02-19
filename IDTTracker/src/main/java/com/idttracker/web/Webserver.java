@@ -43,7 +43,7 @@ public class Webserver{
         context0.setContextPath("/");
         
         ResourceHandler resourceHandler = new ResourceHandler();
-		resourceHandler.setDirectoriesListed(false);
+		resourceHandler.setDirectoriesListed(true);
 		resourceHandler.setWelcomeFiles(new String[] {"Tracker.html"});
 		resourceHandler.setResourceBase("./WebContent");
 		

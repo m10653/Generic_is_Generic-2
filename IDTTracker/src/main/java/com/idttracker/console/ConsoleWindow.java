@@ -157,7 +157,7 @@ public class ConsoleWindow{
 		}
 	}
 	
-	private void clean(){ //TODO Minor Bug last ln is not colored right
+	private void clean(){
 		Element root = document.getDefaultRootElement();
 		while(root.getElementCount() > maxLines){
 			try {

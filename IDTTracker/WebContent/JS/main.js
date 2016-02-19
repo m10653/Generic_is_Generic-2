@@ -78,7 +78,7 @@ $(document).ready(function() { // Get UUID from text box
   
   }
   
-   var wsUri = "ws://mc.m1gaming.net:8080/ws/";
+  // var wsUri = "ws://mc.m1gaming.net:8080/ws/";
   var output;
   var websocket = undefined;
   var infowindow;
